@@ -11,7 +11,7 @@ pipeline {
         sh 'java -version'
       }
     }
-    sstage('Get Kernel') {
+    stage('Get Kernel') {
       steps {
         script {
           try {
