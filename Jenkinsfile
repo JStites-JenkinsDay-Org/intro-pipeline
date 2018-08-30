@@ -2,8 +2,10 @@ pipeline {
   agent {
     label 'jdk8'
   }
-  stages {
-    stage('Say Hello') {
+  stages
+  {
+    stage('Say Hello')
+    {
       steps {
         echo "Hello ${params.Name}!"
         echo "${TEST_USER_USR}"
@@ -11,17 +13,21 @@ pipeline {
         sh 'java -version'
       }
     }
-  stage('Testing') {
+    stage('Testing')
+    {
         failFast true
-        parallel {
-          stage('Java 8') {
+        parallel
+        {
+          stage('Java 8')
+          {
             agent { label 'jdk8' }
             steps {
               sh 'java -version'
               sleep time: 10, unit: 'SECONDS'
             }
           }
-          stage('Java 9') {
+          stage('Java 9')
+          {
             agent { label 'jdk9' }
             steps {
               sh 'java -version'
@@ -29,19 +35,21 @@ pipeline {
             }
           }
         }
-      }
-    stage('Checkpoint') {
+    }
+    stage('Checkpoint')
+    {
          agent none
          steps {
             checkpoint 'Checkpoint'
          }
-      }
-      stage('Deploy') {
+    }
+    stage('Deploy')
+    {
          agent none
          steps {
             echo 'Deploying....'
          }
-      }
+    }
   }
   environment {
     MY_NAME = 'John'
