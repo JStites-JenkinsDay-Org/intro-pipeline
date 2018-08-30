@@ -28,6 +28,7 @@ pipeline {
         echo "${KERNEL_VERSION}"
       }
     }
+  }
   environment {
     MY_NAME = 'John'
     TEST_USER = credentials('test-user')
